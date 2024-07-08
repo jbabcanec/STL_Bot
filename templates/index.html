@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STL Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function showMessage(message) {
+            alert(message);
+        }
+
+        function clearForm() {
+            document.getElementById('promptForm').reset();
+        }
+    </script>
+</head>
+<body>
+    <h1>Generate 3D Models</h1>
+    <form id="promptForm" action="/generate" method="post">
+        <label for="prompt">Enter your prompt:</label>
+        <input type="text" id="prompt" name="prompt" required style="width: 40%; height: 40px; font-size: 18px;">
+        <button type="submit" style="height: 40px; font-size: 18px;">Generate STL</button>
+    </form>
+
+    {% if message %}
+    <script>
+        showMessage("{{ message }}");
+        clearForm();
+    </script>
+    {% endif %}
+</body>
+</html>
