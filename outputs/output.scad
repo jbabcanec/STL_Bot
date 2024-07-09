@@ -1,21 +1,36 @@
-module dumbbell() {
-    // Dumbbell bar
-    difference() {
-        cylinder(h=100, r=10, center=true);
-        cylinder(h=110, r=8, center=true);
-    }
+// Crescent Wrench with Notched Handle
 
-    // Dumbbell weights
-    translate([0, 0, -50]) {
+module crescent_wrench() {
+    handle();
+    head();
+}
+
+module handle() {
+    difference() {
         union() {
-            translate([-20, 0, 0]) {
-                cube([40, 40, 100]);
-            }
-            translate([-20, 0, 100]) {
-                cylinder(h=20, r=20, center=true);
-            }
+            // Main handle
+            translate([0, 0, 0])
+                cube([150, 20, 10]);
+            // Notch in handle
+            translate([50, 5, 0])
+                cube([10, 10, 10]);
         }
     }
 }
 
-dumbbell();
+module head() {
+    translate([150, 0, 0])
+        union() {
+            // Fixed jaw
+            translate([0, 0, 0])
+                cube([20, 20, 10]);
+            // Movable jaw
+            translate([0, 10, 0])
+                cube([10, 10, 10]);
+            // Adjustment mechanism
+            translate([10, 5, 0])
+                cylinder(h=10, r=2, $fn=50);
+        }
+}
+
+crescent_wrench();

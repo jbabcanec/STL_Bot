@@ -17,9 +17,9 @@ class ChatHandler:
 
         try:
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo-16k",
+                model="gpt-4o-2024-05-13",
                 messages=messages,
-                max_tokens=300,
+                max_tokens=4096,
                 temperature=0.3,
                 top_p=1.0,
                 n=1
